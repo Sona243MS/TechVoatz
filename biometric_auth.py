@@ -84,3 +84,28 @@ class BiometricAuth:
         except Exception as e:
             print(f'Error enrolling face: {e}')
             return False
+
+        def verify_face(self, image_path):
+        try:
+            unknown_image = face_recognition.load_image_file(image_path)
+            unknown_face_encodings = face_recognition.face_encodings(unknown_image)
+
+            if not unknown_face_encodings:
+                print('No face found in image')
+                return False
+
+            unknown_face_encoding = unknown_face_encodings[0]
+            matches = face_recognition.compare_faces(self.known_face_encodings, unknown_face_encoding)
+
+            if True in matches:
+                match_index = matches.index(True)
+                name = self.known_face_names[match_index]
+                print(f'Face matched with {name}!')
+                return True
+            else:
+                print('Face not recognized')
+                return False
+
+        except Exception as e:
+            print(f'Error verifying face: {e}')
+            return False
