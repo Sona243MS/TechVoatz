@@ -7,16 +7,24 @@ The current manual verification process at polling booths is inefficient, time-c
 Our Mission:
 This hackathon challenges us to develop automated, secure, and scalable solutions that streamline voter verification. By leveraging cutting-edge technology—such as biometrics, blockchain, or AI-powered systems—we can make voting faster, more secure, and more accessible. Together, let’s build the future of elections: one where every vote counts, and every voter’s experience is seamless and trustworthy.
 
-Ready to hack the vote? Let’s transform democracy! 🚀
+Ready to hack the vote?
 
-Technologies to Be Used
-•	Core Technologies:
-1.	Biometric Authentication: Fingerprint and facial recognition APIs.
-2.	Blockchain: Ethereum or Hyperledger for secure voter records.
-3.	AI/ML: Python-based algorithms for real-time monitoring.
-4.	Website Development: Flutter or React Native.
-5.	Gemini APIs: Integrate Gemini for advanced AI capabilities
+# Biometric Authentication System
 
-•	Additional Points:
-6.	IDX Platform: Build and deploy the solution on Google’s IDX.
+A Python-based biometric authentication system that supports both fingerprint and facial recognition.
 
+## Features
+- Fingerprint enrollment and verification
+- Facial recognition enrollment and verification
+- Support for multiple users
+- Error handling and status messages
+
+## Requirements
+- Python 3.7+
+- pyfingerprint
+- face_recognition
+- opencv-python
+
+## Installation
+```bash
+pip install face-recognition opencv-python pyfingerprint
