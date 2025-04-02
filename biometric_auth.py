@@ -2,15 +2,21 @@ import face_recognition
 import cv2
 import numpy as np
 from pyfingerprint.pyfingerprint import PyFingerprint
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 class BiometricAuth:
     def __init__(self):
         self.known_face_encodings = []
         self.known_face_names = []
+        self.port = os.getenv('FINGERPRINT_PORT', '/dev/ttyUSB0')
+        self.baudrate = int(os.getenv('FINGERPRINT_BAUDRATE', '57600'))
         
-    def setup_fingerprint(self, port='/dev/ttyUSB0', baudrate=57600):
+    def setup_fingerprint(self):
         try:
-            self.f = PyFingerprint(port, baudrate)
+            self.f = PyFingerprint(self.port, self.baudrate)
             if not self.f.verifyPassword():
                 raise ValueError('Password verification failed!')
             return True
@@ -85,7 +91,7 @@ class BiometricAuth:
             print(f'Error enrolling face: {e}')
             return False
 
-        def verify_face(self, image_path):
+    def verify_face(self, image_path):
         try:
             unknown_image = face_recognition.load_image_file(image_path)
             unknown_face_encodings = face_recognition.face_encodings(unknown_image)
@@ -95,7 +101,11 @@ class BiometricAuth:
                 return False
 
             unknown_face_encoding = unknown_face_encodings[0]
-            matches = face_recognition.compare_faces(self.known_face_encodings, unknown_face_encoding)
+            matches = face_recognition.compare_faces(
+                self.known_face_encodings, 
+                unknown_face_encoding,
+                tolerance=float(os.getenv('FACE_RECOGNITION_THRESHOLD', '0.6'))
+            )
 
             if True in matches:
                 match_index = matches.index(True)
