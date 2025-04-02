@@ -1,13 +1,13 @@
 # Biometric Authentication System
 
-A comprehensive Python-based biometric authentication system supporting both fingerprint and facial recognition.
+A comprehensive Python-based biometric authentication system supporting both fingerprint and facial recognition for revolutionizing the voting system.
 
 ## Features
 
 - **Fingerprint Authentication**
   - Enrollment and verification
   - Multiple fingerprint template support
-  - Error handling and feedback
+  - Error handling and Feedback
 
 - **Facial Recognition**
   - Face enrollment with name association
